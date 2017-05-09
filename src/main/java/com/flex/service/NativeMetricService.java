@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * Created by jasonskipper on 5/9/17.
  */
-@Service("test")
+@Service("native")
 public class NativeMetricService implements MetricServiceInterface {
 
     private HashMap<String, NativeMetricData> metricCatalogue = new HashMap();

@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 public class MetricServiceTest {
 
-    @Resource(name="test")
+    @Resource(name="native")
     private MetricServiceInterface metricService;
 
 
