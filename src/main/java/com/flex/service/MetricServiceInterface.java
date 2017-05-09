@@ -16,5 +16,7 @@ public interface MetricServiceInterface {
 
     Double getMax(String key);
 
+    boolean exists(String key);
+
     void clear();
 }

@@ -16,6 +16,11 @@ public class MetricService implements MetricServiceInterface {
     private HashMap<String, DescriptiveStatistics> metricCatalogue = new HashMap();
 
     @Override
+    public boolean exists(String key) {
+        return metricCatalogue.containsKey(key);
+    }
+
+    @Override
     public void addMetric(String key){
 
         metricCatalogue.computeIfAbsent(key, k -> new DescriptiveStatistics());

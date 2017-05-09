@@ -108,6 +108,11 @@ public class NativeMetricService implements MetricServiceInterface {
         }
     }
 
+    @Override
+    public boolean exists(String key) {
+        return metricCatalogue.containsKey(key);
+    }
+
     /**
      * Clears all data from this service.
      */
