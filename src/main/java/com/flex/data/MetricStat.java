@@ -8,6 +8,16 @@ public class MetricStat {
     private MetricStatType type;
     private Double value;
 
+    public MetricStat(){
+
+    }
+
+    public MetricStat(String name, MetricStatType type, Double value) {
+        this.name = name;
+        this.type = type;
+        this.value = value;
+    }
+
     public String getName() {
         return name;
     }

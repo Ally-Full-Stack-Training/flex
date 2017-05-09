@@ -3,9 +3,10 @@ package com.flex.service;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.annotation.Resource;
 
 /**
  * Created by jasonskipper on 5/8/17.
@@ -13,8 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class MetricServiceTest {
-    @Autowired
-    private MetricService metricService;
+
+    @Resource(name="test")
+    private MetricServiceInterface metricService;
+
 
     @Test
     public void testSingleMetric() throws Exception {
@@ -82,7 +85,42 @@ public class MetricServiceTest {
     @Test
     public void testGetNonExistentMetric() throws Exception {
         metricService.addMetric("TEST2");
-        Assert.assertNull("Stat should be null", metricService.getMax("NOTHERE"));
+        Assert.assertNull("Max should be null", metricService.getMax("NOTHERE"));
+        Assert.assertNull("Mine should be null", metricService.getMin("NOTHERE"));
+        Assert.assertNull("Mean should be null", metricService.getMean("NOTHERE"));
+        Assert.assertNull("Median should be null", metricService.getMedian("NOTHERE"));
     }
 
+    @Test
+    public void testEmpty() throws Exception {
+        metricService.clear();
+        Assert.assertNull("Max should be null", metricService.getMax("NOTHERE"));
+        Assert.assertNull("Mine should be null", metricService.getMin("NOTHERE"));
+        Assert.assertNull("Mean should be null", metricService.getMean("NOTHERE"));
+        Assert.assertNull("Median should be null", metricService.getMedian("NOTHERE"));
+
+    }
+
+    @Test
+    public void testOne() throws Exception {
+        metricService.clear();
+        metricService.addMetric("one");
+        metricService.addValueToMetric("one", 1d);
+        Assert.assertEquals("Max error with single value", 1, metricService.getMax("one"), .001);
+        Assert.assertEquals("Min error with single value", 1, metricService.getMin("one"), .001);
+        Assert.assertEquals("Median error with single value", 1, metricService.getMedian("one"), .001);
+        Assert.assertEquals("Mean error with single value", 1, metricService.getMean("one"), .001);
+    }
+
+    @Test
+    public void testTwo() throws Exception {
+        metricService.clear();
+        metricService.addMetric("two");
+        metricService.addValueToMetric("two", 1d);
+        metricService.addValueToMetric("two", 2d);
+        Assert.assertEquals("Max error with single value", 2, metricService.getMax("two"), .001);
+        Assert.assertEquals("Min error with single value", 1, metricService.getMin("two"), .001);
+        Assert.assertEquals("Median error with single value", 1.5, metricService.getMedian("two"), .001);
+        Assert.assertEquals("Mean error with single value", 1.5, metricService.getMean("two"), .001);
+    }
 }
