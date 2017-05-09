@@ -28,7 +28,7 @@ public class MetricController {
         metricService.addMetric(name);
     }
 
-    @ApiOperation(value = "Add a value to a Metric", notes = "This operation completes with time complexity of O(1)")
+    @ApiOperation(value = "Add a value to a Metric", notes = "This operation completes with time complexity of O(n*log(n))")
     @RequestMapping(value = "metric/value", method = RequestMethod.POST)
     public void addValueToMetric(@RequestBody Metric addMetric){
          metricService.addValueToMetric(addMetric.getName(), addMetric.getValue());
