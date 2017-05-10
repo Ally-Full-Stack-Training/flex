@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by jasonskipper on 5/9/17.
@@ -127,10 +128,10 @@ public class NativeMetricService implements MetricServiceInterface {
     class NativeMetricData {
 
         private double sum;
-        private ArrayList<Double> values;
+        private CopyOnWriteArrayList<Double> values;
 
         public NativeMetricData() {
-            values = new ArrayList<>();
+            values = new CopyOnWriteArrayList();
         }
 
         /**
