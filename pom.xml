@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>te2</groupId>
     <artifactId>app</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <!-- we are extending from this project POM which means we get
      everything that this pom has (inheritance) -->
@@ -20,7 +20,12 @@
             <artifactId>commons-math3</artifactId>
             <version>3.6.1</version>
         </dependency>
-
+        <!--  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+-->
         <!-- JSON parsing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
