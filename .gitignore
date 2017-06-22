@@ -1,0 +1,6 @@
+### Here we specify things we'd like to ignore from a git perspective
+
+# IntelliJ project files
+.idea
+*.iml
+target
