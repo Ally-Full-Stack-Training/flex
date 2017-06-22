@@ -27,6 +27,12 @@ public class Application extends SpringBootServletInitializer {
         SpringApplication.run(Application.class);
     }
 
+    /**
+     * This method creates documentation that will be attached to anything found in the
+     * 'path' expression below.  Note it calls the apiInfo method below to further fill out
+     * documentation.
+     * @return a Docket which contains all the nessasary configuration for providing documentation
+     */
     @Bean
     public Docket movieApi() {
         return new Docket(DocumentationType.SWAGGER_2)

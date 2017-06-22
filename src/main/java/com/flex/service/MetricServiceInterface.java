@@ -1,7 +1,7 @@
 package com.flex.service;
 
 /**
- * Created by jasonskipper on 5/8/17.
+ * This is the interface we will use to track and calculate stats
  */
 public interface MetricServiceInterface {
     void addMetric(String key);

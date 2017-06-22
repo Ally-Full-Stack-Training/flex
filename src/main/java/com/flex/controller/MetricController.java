@@ -19,14 +19,19 @@ import java.util.List;
  * Created by jasonskipper on 5/8/17.
  */
 @RestController
-@RequestMapping(path = "/flex/")
+@RequestMapping(path = "/flex/")  // this path will prefix all the other request mappings in this controller (in URL)
 public class MetricController {
 
     @Autowired
-    @Resource(name="native")
+    @Resource(name="native") // let's specify which service we want to use
     private MetricServiceInterface metricService;
 
 
+    /**
+     * Used to create a metric aka a category
+     * @param name
+     * @return
+     */
     @ApiOperation(value = "Create a Metric aka Category", notes = "This operation completes with time complexity of O(1)")
     @RequestMapping(value = "metric", method = RequestMethod.POST)
     public ResponseEntity create(@RequestBody String name){
@@ -38,6 +43,11 @@ public class MetricController {
         }
     }
 
+    /**
+     * Used to add a value to a single metric
+     * @param addMetric
+     * @return
+     */
     @ApiOperation(value = "Add a value to a Metric", notes = "This operation completes with time complexity of O(n*log(n))")
     @RequestMapping(value = "metric/value", method = RequestMethod.POST)
     public ResponseEntity addValueToMetric(@RequestBody Metric addMetric){
@@ -50,6 +60,11 @@ public class MetricController {
 
     }
 
+    /**
+     * Used to get the list of stats for the named metric
+     * @param metric
+     * @return
+     */
     @ApiOperation(value = "Get Metric Stats", notes = "This operation completes with time complexity of O(1)")
     @RequestMapping(value = "metric", method = RequestMethod.GET)
     public List<MetricStat> getMetric(String metric){
